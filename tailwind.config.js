@@ -6,7 +6,14 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+        fontFamily: {
+            // manrope
+            manrope : ['Manrope', 'sans-serif'],
+            // urbanist
+            urbanist : ['Usrbanist', 'sans-serif'],
+        },
+    },
   },
   plugins: [],
 }
