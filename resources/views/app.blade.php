@@ -8,9 +8,11 @@
 </head>
 
 <body>
-    <h1 class="text-3xl font-bold underline">
-        Hello world!
-    </h1>
+    <div class="font-manrope">
+        <h1 class="text-3xl font-semibold">Web Recap Data TKI</h1>
+        <h2>Dinas Tenaga Kerja Dan Transmigrasi</h2>
+        <h3>Mall Pelayanan Publik MPP</h3>
+    </div>
 </body>
 
 </html>
