@@ -9,6 +9,7 @@ export default {
     extend: {
         fontFamily : {
             manrope : ['Manrope', 'sans-serif'],
+            urbanist : ['Urbanist', 'sans-serif'],
         }
     },
   },
