@@ -10,6 +10,7 @@ export default {
         fontFamily : {
             manrope : ['Manrope', 'sans-serif'],
             urbanist : ['Urbanist', 'sans-serif'],
+            inter : ['Inter', 'sans-serif'],
         }
     },
   },
