@@ -12,7 +12,8 @@ use function PHPUnit\Framework\directoryExists;
 class AuthController extends Controller
 {
 
-    public function showLogin() {
+    public function showLogin()
+    {
         return view('landingpage');
     }
 
@@ -28,11 +29,9 @@ class AuthController extends Controller
             if ($user->role !== 'admin') {
                 Auth::logout();
                 return back()->withErrors(['email' => 'Can access only admin']);
-            } else {
-                // return redirect('admin/dashboard');
-                $request->session()->regenerate();
-                return redirect('admin/dashboard')->with('success', 'You login');
             }
+            $request->session()->regenerate();
+            return redirect('admin/dashboard')->with('success', 'You login');
         }
         //! Alert error
         return back()->withErrors(
@@ -45,6 +44,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('sireda/landingpage');
+        return redirect()->route('showLogin');
     }
 }
