@@ -12,6 +12,10 @@ use function PHPUnit\Framework\directoryExists;
 class AuthController extends Controller
 {
 
+    public function showLogin() {
+        return view('landingpage');
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([

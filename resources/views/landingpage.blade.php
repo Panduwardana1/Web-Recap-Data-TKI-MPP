@@ -9,15 +9,15 @@
     <title>Recap Data TKI MPP</title>
 </head>
 
-<body class="scroll-smooth bg-gradient-to-br from-orange-400 from-30% via-yellow-400 to-yellow-200">
+<body class="scroll-smooth">
     {{-- navabr --}}
     <nav class="">
-        <x-navbar></x-navbar>
+        {{-- <x-navbar></x-navbar> --}}
     </nav>
 
     {{-- flex flex-col justify-center items-center min-h-screen font-manrope --}}
     <main class="flex flex-col mx-6 justify-center items-center font-manrope min-h-screen">
-        <div class="grid grid-cols-2 gap-4 min-h-screen">
+        {{-- <div class="grid grid-cols-2 gap-4 min-h-screen">
             <div class="grid items-center space-y-4 w-auto">
                 <div class="space-y-4">
                     <div class="grid gap-2">
@@ -34,19 +34,19 @@
                             voluptatem, quo quam dicta voluptate eligendi corporis molestiae facilis ea?</p>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- login --}}
             <div class="flex flex-col items-center justify-center">
                 {{-- @yield('login') --}}
-                @include('login.login')
+                @include('auth.login')
             </div>
         </div>
     </main>
 
     <footer>
         <div>
-            <x-footer></x-footer>
+            {{-- <x-footer></x-footer> --}}
         </div>
     </footer>
 

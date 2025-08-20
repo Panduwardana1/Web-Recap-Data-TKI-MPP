@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Database\Factories\TkiFactory;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
