@@ -1,105 +1,43 @@
-<div class="bg-white border rounded-lg p-2 h-[200vh]">
-    {{-- Navbars --}}
-    <div class="border mb-4 py-2 pl-2 justify-start flex flex-col rounded-md">
+<div class="bg-white border rounded-lg p-4 min-h-[100vh]">
+    {{-- Navbar --}}
+    <div class="border mb-2 py-2 pl-2 rounded-md">
         <h1 class="text-black font-semibold">Dashboard</h1>
     </div>
 
-    <div class="grid grid-cols-4 gap-1 selection:bg-teal-400">
-        <div class="block p-2 border rounded-lg hover:bg-blue-600 ease-in duration-75 hover:text-white">
-            <div class=" flex items-center justify-between w-full gap-2">
-                <div class="flex items-center gap-2">
-                    <i data-feather="users" class="h-4 w-4 text-black"></i>
-                    <p class="font-semibold">Data</p>
-                </div>
-                <div><i data-feather="arrow-up-right" class="text-green-500"></i></div>
+    <div class="grid grid-cols-4 auto-rows-[100px] gap-2">
+        {{-- Metric Card --}}
+        <div class="p-2 border rounded-lg bg-stone-900 text-white">
+            ...
+        </div>
+        <div class="p-2 border rounded-lg bg-stone-900 text-white">
+            ...
+        </div>
+        <div class="p-2 border rounded-lg bg-stone-900 text-white">
+            ...
+        </div>
+
+        {{-- Calendar card besar --}}
+        <div class="row-span-6 p-2 border rounded-lg flex flex-col min-h-full">
+            <div class="flex items-center justify-between border-b mb-2">
+                <p class="font-semibold">Calendar</p>
             </div>
-            <div class="text-center py-4">
-                <p class="text-2xl font-semibold text-reed-500">19990 <span>TKI</span></p>
+            <div class="flex-1 flex items-center justify-center">
+                <!-- Isi kalender di sini -->
+                <p>42</p>
             </div>
         </div>
-        <div class="block p-2 border rounded-lg">
-            <div class=" flex items-center justify-between w-full gap-2">
-                <div class="flex items-center gap-2">
-                    <i data-feather="users" class="h-4 w-4 text-black"></i>
-                    <p class="font-semibold">Data</p>
-                </div>
-                <div><i data-feather="arrow-up-right" class="text-green-500"></i></div>
+
+        {{-- Big Card --}}
+        <div class="col-span-3 row-span-4 p-2 border rounded-lg flex flex-col">
+            <div class="flex items-center justify-between border-b">
+                ...
             </div>
-            <div class="text-center py-4">
-                <p class="text-2xl font-semibold">19990 <span>TKI</span></p>
+            <div class="flex-1 flex items-center justify-center">
+                ...
             </div>
         </div>
-        <div class="block p-2 border rounded-lg">
-            <div class=" flex items-center justify-between w-full gap-2">
-                <div class="flex items-center gap-2">
-                    <i data-feather="users" class="h-4 w-4 text-black"></i>
-                    <p class="font-semibold">Data</p>
-                </div>
-                <div><i data-feather="arrow-up-right" class="text-green-500"></i></div>
-            </div>
-            <div class="text-center py-4">
-                <p class="text-2xl font-semibold">19990 <span>TKI</span></p>
-            </div>
-        </div>
-        <div class="block p-2 border rounded-lg">
-            <div class=" flex items-center justify-between w-full gap-2">
-                <div class="flex items-center gap-2">
-                    <i data-feather="users" class="h-4 w-4 text-black"></i>
-                    <p class="font-semibold">Data</p>
-                </div>
-                <div><i data-feather="arrow-up-right" class="text-green-500"></i></div>
-            </div>
-            <div class="text-center py-4">
-                <p class="text-2xl font-semibold">19990 <span>TKI</span></p>
-            </div>
-        </div>
-        <div class="block p-2 border rounded-lg">
-            <div class=" flex items-center justify-between w-full gap-2">
-                <div class="flex items-center gap-2">
-                    <i data-feather="users" class="h-4 w-4 text-black"></i>
-                    <p class="font-semibold">Data</p>
-                </div>
-                <div><i data-feather="arrow-up-right" class="text-green-500"></i></div>
-            </div>
-            <div class="text-center py-4">
-                <p class="text-2xl font-semibold">19990 <span>TKI</span></p>
-            </div>
-        </div>
-        <div class="block p-2 border rounded-lg">
-            <div class=" flex items-center justify-between w-full gap-2">
-                <div class="flex items-center gap-2">
-                    <i data-feather="users" class="h-4 w-4 text-black"></i>
-                    <p class="font-semibold">Data</p>
-                </div>
-                <div><i data-feather="arrow-up-right" class="text-green-500"></i></div>
-            </div>
-            <div class="text-center py-4">
-                <p class="text-2xl font-semibold">19990 <span>TKI</span></p>
-            </div>
-        </div>
-        <div class="block p-2 border rounded-lg">
-            <div class=" flex items-center justify-between w-full gap-2">
-                <div class="flex items-center gap-2">
-                    <i data-feather="users" class="h-4 w-4 text-black"></i>
-                    <p class="font-semibold">Data</p>
-                </div>
-                <div><i data-feather="arrow-up-right" class="text-green-500"></i></div>
-            </div>
-            <div class="text-center py-4">
-                <p class="text-2xl font-semibold">19990 <span>TKI</span></p>
-            </div>
-        </div>
-        <div class="block p-2 border rounded-lg">
-            <div class=" flex items-center justify-between w-full gap-2">
-                <div class="flex items-center gap-2">
-                    <i data-feather="users" class="h-4 w-4 text-black"></i>
-                    <p class="font-semibold">Data</p>
-                </div>
-                <div><i data-feather="arrow-up-right" class="text-green-500"></i></div>
-            </div>
-            <div class="text-center py-4">
-                <p class="text-2xl font-semibold">19990 <span>TKI</span></p>
-            </div>
+        <div class="p-2 col-span-3 border rounded-lg">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, eius!</p>
         </div>
     </div>
 </div>

@@ -31,7 +31,7 @@ class AuthController extends Controller
                 return back()->withErrors(['email' => 'Can access only admin']);
             }
             $request->session()->regenerate();
-            return redirect('admin/dashboard')->with('success', 'You login');
+            return redirect('admin/dashboard', 302)->with('success', 'You login');
         }
         //! Alert error
         return back()->withErrors(

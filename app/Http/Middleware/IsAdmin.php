@@ -18,10 +18,18 @@ class IsAdmin
     public function handle(Request $request, Closure $next): Response
     {
 
-        if (Auth::check() && Auth::User()->role === 'admin') {
-            return $next($request);
-        } else {
-            abort(403, 'Cannot Access');
+        // jika belum login
+        if (!Auth::check()) {
+            return redirect()->route('showLogin')
+                ->withErrors(['login error', 'Please login first']);
         }
+
+        if (Auth::user()->role !== 'admin') {
+            Auth::logout();
+            return redirect()->route('showLogin')
+                ->withErrors(['smg', 'Unautorized']);
+        }
+
+        return $next($request);
     }
 }

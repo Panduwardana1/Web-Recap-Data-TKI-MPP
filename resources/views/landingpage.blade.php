@@ -6,39 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-    <title>Recap Data TKI MPP</title>
+    <title>Login</title>
 </head>
 
 <body class="scroll-smooth">
-    {{-- navabr --}}
-    <nav class="">
-        {{-- <x-navbar></x-navbar> --}}
-    </nav>
-
-    {{-- flex flex-col justify-center items-center min-h-screen font-manrope --}}
-    <main class="flex flex-col mx-6 justify-center items-center font-manrope min-h-screen">
-        {{-- <div class="grid grid-cols-2 gap-4 min-h-screen">
-            <div class="grid items-center space-y-4 w-auto">
-                <div class="space-y-4">
-                    <div class="grid gap-2">
-                        <h1 class="font-semibold text-5xl">WEB Recap Data TKI</h1>
-                        <h1 class="font-semibold text-6xl">Mall Pelayanan Publik</h1>
-                        <p class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora facere, debitis mollitia
-                            tempore
-                            quas vitae aliquid doloremque consequuntur animi perferendis rerum accusamus? Soluta maiores
-                            explicabo, sequi quasi eveniet enim alias.</p>
-                    </div>
-                    <div class="bg-slate-100 p-2 space-y-2 rounded-md font-medium shadow-md">
-                        <i data-feather="alert-circle" class="text-black"></i>
-                        <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut necessitatibus
-                            voluptatem, quo quam dicta voluptate eligendi corporis molestiae facilis ea?</p>
-                    </div>
+    <x-navbar></x-navbar>
+    <main class=" min-h-screen flex items-center p-0 m-0">
+        <div class="grid grid-cols-2 w-full h-screen">
+            {{-- Col 1 --}}
+            <div class="border-r h-screen flex flex-col justify-center items-center font-manrope bg-gradient-to-tl from-blue-400 from-10% via-blue-600 via-5%  to-blue-600 to-50%">
+                <div class="px-2 flex flex-col items-center text-white">
+                    <div class="text-6xl">SIREDA</div>
+                     <p class="text-1xl font-urbanist text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, molestiae.</p>
                 </div>
-            </div> --}}
-
-            {{-- login --}}
-            <div class="flex flex-col items-center justify-center">
-                {{-- @yield('login') --}}
+            </div>
+            {{-- Col 2 --}}
+            <div class="h-screen flex flex-col justify-center items-center">
                 @include('auth.login')
             </div>
         </div>
