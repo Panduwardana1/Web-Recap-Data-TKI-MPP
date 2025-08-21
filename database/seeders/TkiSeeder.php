@@ -13,6 +13,6 @@ class TkiSeeder extends Seeder
      */
     public function run(): void
     {
-        Tki::factory()->count(100)->create();
+        Tki::factory()->count(14902)->create();
     }
 }

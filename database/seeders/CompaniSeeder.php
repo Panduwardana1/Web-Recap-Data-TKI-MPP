@@ -13,30 +13,6 @@ class CompaniSeeder extends Seeder
      */
     public function run(): void
     {
-        // $companis = [
-        //     [
-        //         'name' => 'PT. Blue Diamond',
-        //         'address' => 'Batukliang',
-        //         'phone' => '081234567890',
-        //     ],
-        //     [
-        //         'name' => 'PT. New Comer',
-        //         'address' => 'Praya Tengah',
-        //         'phone' => '082345678901',
-        //     ],
-
-        // ];
-
-        // foreach ($companis as $compani) {
-        //     Compani::updateOrCreate(
-        //         [
-        //             'name' => $compani['name']
-        //         ],
-        //         $compani
-        //     );
-        // }
-
-        Compani::factory()->count(100)->create();
-
+        Compani::factory()->count(3)->create();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +22,7 @@ Route::prefix('sireda')->name('sireda.')->group(function () {
 
 // * Route auth admin
 Route::middleware('isAdmin')->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admins.app');
-    });
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 });
 
 // ? Logout

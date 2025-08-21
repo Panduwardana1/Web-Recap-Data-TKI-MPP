@@ -13,21 +13,6 @@ class DestinationSeeder extends Seeder
      */
     public function run(): void
     {
-        // $destination = [
-        //     ['country_name' => 'Malaysia'],
-        //     ['country_name' => 'Taiwan'],
-        //     ['country_name' => 'Singapura'],
-        //     ['country_name' => 'Brunai Darusalam'],
-        // ];
-
-        // foreach ($destination as $dest) {
-        //     Destination::updateOrCreate(
-        //         ['country_name' => $dest['country_name']],
-        //         $dest
-        //     );
-        // };
-
-        Destination::factory()->count(100)->create();
-
+        Destination::factory()->count(180)->create();
     }
 }

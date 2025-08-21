@@ -10,6 +10,7 @@
 </head>
 
 <body class="font-manrope">
+    {{-- notification --}}
     <div class="fixed top-2 left-1/2 -translate-x-1/2 items-center justify-center max-w-[50%] z-50 text-center bg-lime-600 text-white p-2 mt-2 rounded mb-3"
         id="info">
         <div class="flex items-center font-medium gap-2">
@@ -21,23 +22,39 @@
             {{ session('success') }}
         </div>
     </div>
+
+    {{-- main --}}
     <main>
-        <div class="grid grid-cols-[220px,_1fr] gap-2 p-2 font-manrope">
+        <div class="grid grid-cols-[220px,_1fr] p-2 font-manrope">
             <x-sidebar></x-sidebar>
-            <div>
-                {{-- <x-dashboard></x-dashboard> --}}
-                @include('components.dashboard')
+            {{-- Column --}}
+            <div class=" rounded-lg">
+                @include('admins.dashboard')
             </div>
         </div>
     </main>
 
-    {{-- JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
     <script>
-        feather.replace()
+        const ctx = document.getElementById('monthlyChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {!! json_encode(range(1, 12)) !!},
+                datasets: [{
+                    label: 'Jumlah TKI',
+                    data: {!! json_encode(array_values($monthlyCounts)) !!},
+                    backgroundColor: 'rgba(0, 70, 255)',
+                }]
+            },
+            options : {
+                responsive : true,
+                maintainAspectRatio:false,
+            }
+        });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
 </body>
 
 </html>
