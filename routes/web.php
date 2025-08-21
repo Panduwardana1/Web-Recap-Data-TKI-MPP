@@ -26,7 +26,6 @@ Route::middleware('isAdmin')->prefix('admin')->group(function () {
     });
 });
 
-
 // ? Logout
 Route::post('/logout', [AuthController::class, 'logOut'])->name('logout');
 
@@ -34,3 +33,7 @@ Route::post('/logout', [AuthController::class, 'logOut'])->name('logout');
 Route::fallback(function () {
     return view('landingpage');
 });
+
+/*----------------------------------------------------------------------------
+    ROUTE Dashboard admin
+---------------------------------------------------------------------------*/

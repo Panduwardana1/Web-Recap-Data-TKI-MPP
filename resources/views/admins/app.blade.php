@@ -18,16 +18,18 @@
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
-
             {{ session('success') }}
         </div>
     </div>
-    <div>
+    <main>
         <div class="grid grid-cols-[220px,_1fr] gap-2 p-2 font-manrope">
             <x-sidebar></x-sidebar>
-            <x-dashboard></x-dashboard>
+            <div>
+                {{-- <x-dashboard></x-dashboard> --}}
+                @include('components.dashboard')
+            </div>
         </div>
-    </div>
+    </main>
 
     {{-- JS --}}
     <script src="{{ asset('js/app.js') }}"></script>
