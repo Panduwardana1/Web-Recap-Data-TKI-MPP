@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\TabelDataController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,14 +21,8 @@ Route::prefix('sireda')->name('sireda.')->group(function () {
     Route::get('/', [LandingPageController::class, 'landingpage'])->name('landingpage');
 });
 
-// * Route auth admin
-Route::middleware('isAdmin')->prefix('admin')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-});
-
-// ? Logout
+// ! Logout
 Route::post('/logout', [AuthController::class, 'logOut'])->name('logout');
-
 
 Route::fallback(function () {
     return view('landingpage');
@@ -36,3 +31,7 @@ Route::fallback(function () {
 /*----------------------------------------------------------------------------
     ROUTE Dashboard admin
 ---------------------------------------------------------------------------*/
+Route::middleware('isAdmin')->prefix('admin')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/tabledata',[TabelDataController::class, 'index'])->name('admin.tabeldata');
+});

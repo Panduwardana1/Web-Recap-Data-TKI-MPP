@@ -8,7 +8,7 @@
                 <h1 class="font-manrope font-semibold">SIREDA</h1>
                 <p class="text-xs">Compy right @Sireda 2025</p>
             </div>
-            <form action="{{ route('logout') }}" method="POST" class="flex items-stretch justify-center">
+            <form action="{{ route('logout') }}" method="POST" class="flex items-stretch justify-center ">
                 @csrf
                 <button type="submit"
                     class="flex py-1 items-center justify-center gap-2 bg-stone-800 hover:bg-stone-700 active:bg-stone-950 text-stone-50 w-full rounded-md"

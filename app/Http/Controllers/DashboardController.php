@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Compani;
-use Illuminate\Http\Request;
-use App\Models\Tki;
-use App\Models\Company;
-use App\Models\Destination;
 use Carbon\Carbon;
+use App\Models\Tki;
+use App\Models\Compani;
+use App\Models\Destination;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // todo Statistik jumlah TKI
         $today = Tki::whereDate('created_at', Carbon::today())->count();
@@ -19,6 +18,7 @@ class DashboardController extends Controller
         $thisMonth = Tki::whereMonth('created_at', Carbon::now()->month)
             ->whereYear('created_at', Carbon::now()->year)
             ->count();
+
         $thisYear = Tki::whereYear('created_at', Carbon::now()->year)->count();
         $total = Tki::count();
 
@@ -43,6 +43,11 @@ class DashboardController extends Controller
             $monthlyCounts[$i] = $monthlyData[$i] ?? 0;
         }
 
+        $totalTki = Tki::count();
+
+        $mele = Tki::where('gender', 'L')->count();
+        $famele = Tki::where('gender', 'P')->count();
+
         return view('admins.app', compact(
             'today',
             'thisMonth',
@@ -50,7 +55,10 @@ class DashboardController extends Controller
             'total',
             'topCompany',
             'topDestination',
-            'monthlyCounts'
+            'monthlyCounts',
+            'totalTki',
+            'mele',
+            'famele',
         ));
     }
 }

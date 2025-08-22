@@ -26,7 +26,9 @@
     {{-- main --}}
     <main>
         <div class="grid grid-cols-[220px,_1fr] p-2 font-manrope">
-            <x-sidebar></x-sidebar>
+            <div>
+                <x-sidebar></x-sidebar>
+            </div>
             {{-- Column --}}
             <div class=" rounded-lg">
                 @include('admins.dashboard')
@@ -35,26 +37,39 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
     <script>
         const ctx = document.getElementById('monthlyChart').getContext('2d');
         new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
-                labels: {!! json_encode(range(1, 12)) !!},
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
                 datasets: [{
                     label: 'Jumlah TKI',
                     data: {!! json_encode(array_values($monthlyCounts)) !!},
-                    backgroundColor: 'rgba(0, 70, 255)',
-                }]
+                    borderColor: 'rgba(92, 126, 237)',
+                    backgroundColor: 'rgba(199, 212, 255)',
+                    tension: .1,
+                    fill: true
+                }],
             },
-            options : {
-                responsive : true,
-                maintainAspectRatio:false,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         });
     </script>
-
 </body>
 
 </html>

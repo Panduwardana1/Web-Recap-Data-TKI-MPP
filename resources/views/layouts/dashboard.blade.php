@@ -31,10 +31,6 @@
                     <h1 class="font-semibold text-2xl">9722902</h1>
                 </section>
             </div>
-
-            {{-- <div class="p-2 border rounded-lg bg-stone-900 text-white">
-            ...
-        </div> --}}
             <div class="p-2 border rounded-lg h-auto bg-blue-500 text-white">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2">
