@@ -6,14 +6,13 @@ use App\Models\Compani;
 use App\Models\Destination;
 use App\Models\Tki;
 use Illuminate\Http\Request;
-use Psy\VersionUpdater\SelfUpdate;
 
 class TabelDataController extends Controller
 {
     public function index()
     {
         $dataTki = Tki::with(['compani', 'destination'])->paginate(50);
-        return view('admins.tabel-adata', compact('dataTki'));
+        return view('admins.all-data', compact('dataTki'));
     }
 
     public function createDataTki()
@@ -29,29 +28,29 @@ class TabelDataController extends Controller
         $validate = $request->validate([
             'name' => 'required|string|max:255',
             'gender' => 'required|in:L,P',
-            'place_of_birth' => 'required|date',
-            'address_vilage' => 'required|string',
-            'district' => 'required|max:100',
-            'education' => 'required|string',
-            'phone' => 'required|null',
+            'place_of_birth' => 'required|string|max:100',
+            'address_vilage' => 'required|string|max:255',
+            'district' => 'required|string|max:100',
+            'education' => 'required|string|max:100',
+            'phone' => 'nullable|string|max:20',
             'compani_id' => 'required|exists:compani_id',
-            'destination_id' => 'destination_id'
+            'destination_id' => 'required|exists:destination_id'
         ]);
 
         $tkiCreate = Tki::create($validate);
 
-        return redirect()->route('admin.tabeldata')->with('Success', 'Data berhasil ditambahkan');
+        return redirect()->route('admin.alldata.store')->with('Success', 'Data berhasil ditambahkan');
     }
     public function showDataTki(Tki $tki)
     {
-        return view('admins.tabel-adata', compact('tki'));
+        return view('admins.crud.tki.show', compact('tki'));
     }
 
     public function editDataTki(Tki $tki)
     {
         $cmp = Compani::all();
         $dest = Destination::all();
-        return redirect()->route('admin.tabeldata', compact('tki', 'cmp', 'dest'));
+        return redirect()->route('admin.alldata.edit', compact('tki', 'cmp', 'dest'));
     }
 
     public function updateDataTki(Request $request, Tki $tki)
@@ -59,21 +58,22 @@ class TabelDataController extends Controller
         $validateUpdate = $request->validate([
             'name' => 'required|string|max:255',
             'gender' => 'required|in:L,P',
-            'place_of_birth' => 'required|date',
-            'address_vilage' => 'required|string',
-            'district' => 'required|max:100',
-            'education' => 'required|string',
-            'phone' => 'required|null',
-            'compani_id' => 'required|exists:compani_id',
-            'destination_id' => 'destination_id'
+            'place_of_birth' => 'required|string|max:100',
+            'address_vilage' => 'required|string|max:255',
+            'district' => 'required|string|max:100',
+            'education' => 'required|string|max:100',
+            'phone' => 'nullable|string|max:20',
+            'compani_id' => 'required|exists:companis_id',
+            'destination_id' => 'required|exists:destinations_id'
         ]);
 
         $tki->update($validateUpdate);
-        return redirect()->route('admin.tabeldata')->with('Success', 'Data sudah di update');
+        return redirect()->route('admin.alldata')->with('Success', 'Data sudah di update');
     }
 
-    public function destroy(Tki $tki){
+    public function destroy(Tki $tki)
+    {
         $tki->delete();
-        return redirect()->route('admin.tabeldata')->with('Success', 'Data sudah di hapus');
+        return redirect()->route('admin.alldata')->with('Success', 'Data sudah di hapus');
     }
 }
