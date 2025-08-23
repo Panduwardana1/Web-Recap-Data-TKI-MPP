@@ -1,5 +1,5 @@
-<div class="">
-    <div class="border block sticky rounded-lg p-4 bg-white top-2 h-[calc(100vh-20px)]">
+<div class="h-screen">
+    <div class="border fixed rounded-lg p-2 bg-white top-2 h-[calc(100vh-20px)]">
         {{-- h-[calc(100vh-32px-48px)] --}}
         <div class="flex flex-col h-full">
             <x-account-profile></x-account-profile>

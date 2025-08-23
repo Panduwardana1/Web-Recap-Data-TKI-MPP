@@ -16,7 +16,7 @@ class Compani extends Model
     protected $fillable = ['name', 'address', 'phone'];
 
     public function tki() : HasMany {
-        return $this->hasMany(Tki::class);
+        return $this->hasMany(Tki::class,'destination_id');
     }
 
 }

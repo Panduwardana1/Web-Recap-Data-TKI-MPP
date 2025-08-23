@@ -28,11 +28,11 @@ class Tki extends Model
     ];
 
     public function compani() : BelongsTo {
-        return $this->belongsTo(Compani::class);
+        return $this->belongsTo(Compani::class, 'compani_id');
     }
 
     public function destination() : BelongsTo {
-        return $this->belongsTo(Destination::class);
+        return $this->belongsTo(Destination::class, 'destination_id');
     }
 
 }
