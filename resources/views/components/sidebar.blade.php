@@ -11,9 +11,7 @@
             <form action="{{ route('logout') }}" method="POST" class="flex items-stretch justify-center ">
                 @csrf
                 <button type="submit"
-                    class="flex py-1 items-center justify-center gap-2 bg-stone-800 hover:bg-stone-700 active:bg-stone-950 text-stone-50 w-full rounded-md"
-                    onclick="alert('Logout now
-                    ')">
+                    class="flex py-1 items-center justify-center gap-2 bg-stone-800 hover:bg-stone-700 active:bg-stone-950 text-stone-50 w-full rounded-md">
                     <i data-feather="log-out" class="h-4 w-4"></i>
                     <span class="font-medium">Logout</span>
                 </button>

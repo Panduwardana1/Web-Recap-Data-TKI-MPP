@@ -33,5 +33,11 @@ Route::fallback(function () {
 ---------------------------------------------------------------------------*/
 Route::middleware('isAdmin')->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/tabledata',[TabelDataController::class, 'index'])->name('admin.tabeldata');
+    Route::get('/alldata', [TabelDataController::class, 'index'])->name('admin.alldata');
+    Route::get('/alldata/create', [TabelDataController::class, 'createDataTki'])->name('admin.tki.create');
+    Route::post('/alldata', [TabelDataController::class, 'storeData'])->name('admin.tki.store');
+    Route::get('/alldata/{tki}', [TabelDataController::class, 'showDataTki'])->name('admin.tki.show');
+    Route::get('/alldata/{tki}/edit', [TabelDataController::class, 'editDataTki'])->name('admin.tki.edit');
+    Route::put('/alldata/{tki}', [TabelDataController::class, 'updateDataTki'])->name('admin.tki.update');
+    Route::delete('/alldata/{tki}', [TabelDataController::class, 'destroy'])->name('admin.tki.destroy');
 });

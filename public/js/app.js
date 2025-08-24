@@ -1,8 +1,8 @@
-const loginInfo = document.getElementById("info");
+const session = document.getElementById('session')
 
-if (info) {
+if (session) {
     setTimeout(() => {
-        loginInfo.style.display = "none";
-        loginInfo.style.transitionDuration = "2s";
+        session.style.display = "none";
+        session.style.transitionDuration = "2s";
     }, 2000);
 }

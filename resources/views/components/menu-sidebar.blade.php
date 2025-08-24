@@ -11,7 +11,7 @@
             Dashboard
         </x-nav-link>
         {{-- Data --}}
-        <x-nav-link :active="request()->routeIs('admin.tabeldata')" href="{{ route('admin.tabeldata') }}">
+        <x-nav-link :active="request()->routeIs('admin.alldata')" href="{{ route('admin.alldata') }}">
             <x-heroicon-s-table-cells class="w-5 h-5 text-slate-800" />
             Data
         </x-nav-link>

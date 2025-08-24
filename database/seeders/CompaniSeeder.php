@@ -13,6 +13,6 @@ class CompaniSeeder extends Seeder
      */
     public function run(): void
     {
-        Compani::factory()->count(3)->create();
+        Compani::factory()->count(10)->create();
     }
 }
