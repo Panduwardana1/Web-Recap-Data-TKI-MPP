@@ -1,3 +1,4 @@
+@vite('resources/css/app.css')
 <div class="max-w-3xl mx-auto bg-white p-6">
     <h2 class="text-xl font-bold mb-4">Detail Data TKI</h2>
 

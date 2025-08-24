@@ -15,7 +15,7 @@ class TabelDataController extends Controller
         $query = Tki::with(['compani', 'destination'])->orderBy('created_at', 'desc');
 
         if ($request->filled('q')) {
-            $q = $request->q;
+            $q = trim($request->q);
             $query->where(function ($sub) use ($q) {
                 $sub->where('name', 'like', "%{$q}%")
                     ->orWhere('nik', 'like', "%{$q}%");
@@ -23,7 +23,7 @@ class TabelDataController extends Controller
         }
 
         $dataTki = $query->paginate(25)->withQueryString();
-
+        // dd($dataTki->pluck('name', 'nik'));
         return view('admins.all-data', compact('dataTki'));
     }
 

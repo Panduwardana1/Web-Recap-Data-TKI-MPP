@@ -140,23 +140,7 @@
             </div>
         </div>
     </div>
-
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-        function openModal(url) {
-            fetch(url)
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById('modal-content').innerHTML = html;
-                    document.getElementById('modal-tki').classList.remove('hidden');
-                });
-        }
-
-        function closeModal() {
-            document.getElementById('modal-tki').classList.add('hidden');
-            document.getElementById('modal-content').innerHTML = '';
-        }
-    </script>
+    <script src="{{ asset('js/all-data.js') }}"></script>
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+@vite('resources/css/app.css')
 <form action="{{ route('admin.tki.update', $tki->id) }}" method="POST">
     @csrf
     @method('PUT')

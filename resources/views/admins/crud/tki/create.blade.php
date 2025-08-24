@@ -1,3 +1,4 @@
+@vite('resources/css/app.css')
 <form action="{{ route('admin.tki.store') }}" method="POST" class="p-4">
     @csrf
     <div class="grid gap-4">
