@@ -10,136 +10,255 @@
 </head>
 
 <body>
-    <div class="grid grid-cols-[220px,_1fr] p-2 gap-2 font-manrope">
-        <div>
+    <div class="grid grid-cols-1 lg:grid-cols-[220px,_1fr] p-2 gap-2 font-manrope">
+        <div class="lg:block">
             <x-sidebar></x-sidebar>
         </div>
-        <main>
-            <div class="bg-white rounded-lg">
+        <main class="min-w-0">
+            <div class="bg-white rounded-lg shadow-sm">
                 @if (session('success'))
-                    <div class="p-2 bg-green-500 z-50 text-white rounded mb-2" id="session">
+                    <div class="p-3 bg-green-500 text-white rounded-t-lg mb-0" id="session">
                         {{ session('success') }}
                     </div>
                 @endif
 
-                <div>
-                    <div class="flex items-center justify-between p-2 border rounded-lg mb-1">
+                <div class="p-4">
+                    <!-- Header Actions -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 border rounded-lg mb-4 bg-gray-50">
                         <button onclick="openModal('{{ route('admin.tki.create') }}')"
-                            class="flex items-center gap-1 bg-green-600 text-white font-semibold py-1 px-3 rounded-md">
+                            class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition-colors">
                             <x-heroicon-s-plus-circle class="h-5 w-5"></x-heroicon-s-plus-circle>
-                            <span>Add</span>
+                            <span>Tambah Data</span>
                         </button>
-                        <form method="GET" action="{{ route('admin.alldata') }}">
-                            <div class="flex items-center gap-4">
-                                <span class="flex items-center border px-2 rounded">
+                        <form method="GET" action="{{ route('admin.alldata') }}" class="w-full sm:w-auto">
+                            <div class="flex items-center gap-2">
+                                <div class="flex items-center border border-gray-300 bg-white px-3 py-2 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
                                     <input type="text" name="q" value="{{ request('q') }}"
                                         placeholder="Cari nama/NIK..."
-                                        class="px-1 py-1 rounded focus:outline-none w-full">
-                                    <x-heroicon-s-magnifying-glass class="h-5 w-5"></x-heroicon-s-magnifying-glass>
-                                </span>
-                                <button type="submit" class="bg-gray-900 text-white px-2 py-1 rounded">Cari</button>
+                                        class="px-1 py-0 focus:outline-none w-full min-w-[200px] text-sm">
+                                    <x-heroicon-s-magnifying-glass class="h-5 w-5 text-gray-400"></x-heroicon-s-magnifying-glass>
+                                </div>
+                                <button type="submit" class="bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-lg transition-colors">
+                                    Cari
+                                </button>
                             </div>
                         </form>
                     </div>
-                    <table class="w-full text-sm text-left text-gray-600 border">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-200">
-                            <tr>
-                                <th class="px-4 py-2 border">No</th>
-                                <th class="px-4 py-2 border">Nama</th>
-                                <th class="px-4 py-2 border">NIK</th>
-                                <th class="px-4 py-2 border text-center">Gender</th>
-                                <th class="px-4 py-2 border">PT</th>
-                                <th class="px-4 py-2 border">Negara Tujuan</th>
-                                <th class="px-4 py-2 border">Pendidikan</th>
-                                <th class="px-4 py-2 border">Terdata Pada</th>
-                                <th class="px-4 py-2 border text-center">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($dataTki as $index => $row)
-                                <tr class="hover:bg-stone-900 hover:text-slate-100">
-                                    <td class="px-4 py-2 border">{{ $dataTki->firstItem() + $index }}</td>
-                                    <td class="px-4 py-2 border">{{ $row->name }}</td>
-                                    <td class="px-4 py-2 border">{{ $row->nik }}</td>
-                                    <td class="px-4 py-2 border text-center">{{ $row->gender }}</td>
-                                    <td class="px-4 py-2 border">{{ $row->compani?->name }}</td>
-                                    <td class="px-4 py-2 border">{{ $row->destination?->country_name }}</td>
-                                    <td class="px-4 py-2 border text-center">{{ $row->education }}</td>
-                                    <td class="px-4 py-2 border">{{ $row->created_at->format('d M Y') }}</td>
-                                    <td class="px-4 py-2 border">
-                                        <span class="flex items-center justify-center gap-2">
-                                            <button onclick="openModal('{{ route('admin.tki.show', $row->id) }}')"
-                                                title="Lihat">
-                                                <x-heroicon-s-user-circle class="h-5 w-5" />
-                                            </button>
-                                            <button onclick="openModal('{{ route('admin.tki.edit', $row->id) }}')"
-                                                title="Edit">
-                                                <x-heroicon-s-pencil-square class="h-5 w-5" />
-                                            </button>
-                                            <form action="{{ route('admin.tki.destroy', $row->id) }}" method="POST"
-                                                onsubmit="return confirm('Apakah anda yakin untuk menghapus datanya?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit">
-                                                    <x-heroicon-s-trash class="h-5 w-5"></x-heroicon-s-trash></a>
-                                                </button>
-                                            </form>
-                                        </span>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="px-4 py-2 text-center text-gray-500">Belum ada data</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
 
-                {{-- Pagination --}}
-                <div class="fixed bottom-4 right-4 bg-white p-2 rounded-lg shadow-lg z-50">
-                    {{ $dataTki->appends(request()->except('page'))->links() }}
+                    <!-- Table Container with Horizontal Scroll -->
+                    <div class="overflow-x-auto border border-gray-200 rounded-lg">
+                        <table class="w-full text-sm text-left text-gray-700 min-w-[800px]">
+                            <thead class="text-xs font-semibold text-gray-800 uppercase bg-gray-100 border-b border-gray-200">
+                                <tr>
+                                    <th class="px-4 py-3 border-r border-gray-200 text-center w-16">No</th>
+                                    <th class="px-4 py-3 border-r border-gray-200 min-w-[150px]">Nama</th>
+                                    <th class="px-4 py-3 border-r border-gray-200 min-w-[120px]">NIK</th>
+                                    <th class="px-4 py-3 border-r border-gray-200 text-center w-20">Gender</th>
+                                    <th class="px-4 py-3 border-r border-gray-200 min-w-[120px]">PT</th>
+                                    <th class="px-4 py-3 border-r border-gray-200 min-w-[120px]">Negara Tujuan</th>
+                                    <th class="px-4 py-3 border-r border-gray-200 text-center min-w-[100px]">Pendidikan</th>
+                                    <th class="px-4 py-3 border-r border-gray-200 min-w-[110px]">Terdata Pada</th>
+                                    <th class="px-4 py-3 text-center w-32">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @forelse ($dataTki as $index => $row)
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="px-4 py-3 border-r border-gray-200 text-center font-medium text-gray-900">
+                                            {{ $dataTki->firstItem() + $index }}
+                                        </td>
+                                        <td class="px-4 py-3 border-r border-gray-200 font-medium text-gray-900">
+                                            {{ $row->name }}
+                                        </td>
+                                        <td class="px-4 py-3 border-r border-gray-200 text-gray-700 text-xs">
+                                            {{ $row->nik }}
+                                        </td>
+                                        <td class="px-4 py-3 border-r border-gray-200 text-center">
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium
+                                                {{ $row->gender === 'L' ? 'bg-blue-100 text-blue-800' : 'bg-pink-100 text-pink-800' }}">
+                                                {{ $row->gender }}
+                                            </span>
+                                        </td>
+                                        <td class="px-4 py-3 border-r border-gray-200 text-gray-700">
+                                            {{ $row->compani?->name ?? '-' }}
+                                        </td>
+                                        <td class="px-4 py-3 border-r border-gray-200 text-gray-700">
+                                            {{ $row->destination?->country_name ?? '-' }}
+                                        </td>
+                                        <td class="px-4 py-3 border-r border-gray-200 text-center text-gray-700">
+                                            {{ $row->education }}
+                                        </td>
+                                        <td class="px-4 py-3 border-r border-gray-200 text-gray-600 text-xs">
+                                            {{ $row->created_at->format('d M Y') }}
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <div class="flex items-center justify-center gap-2">
+                                                <button onclick="openModal('{{ route('admin.tki.show', $row->id) }}')"
+                                                    title="Lihat Detail"
+                                                    class="p-1 text-blue-600 hover:text-blue-800 hover:bg-blue-100 rounded transition-colors">
+                                                    <x-heroicon-s-user-circle class="h-5 w-5" />
+                                                </button>
+                                                <button onclick="openModal('{{ route('admin.tki.edit', $row->id) }}')"
+                                                    title="Edit Data"
+                                                    class="p-1 text-green-600 hover:text-green-800 hover:bg-green-100 rounded transition-colors">
+                                                    <x-heroicon-s-pencil-square class="h-5 w-5" />
+                                                </button>
+                                                <form action="{{ route('admin.tki.destroy', $row->id) }}" method="POST"
+                                                    onsubmit="return confirm('Apakah anda yakin untuk menghapus datanya?')"
+                                                    class="inline-block">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        title="Hapus Data"
+                                                        class="p-1 text-red-600 hover:text-red-800 hover:bg-red-100 rounded transition-colors">
+                                                        <x-heroicon-s-trash class="h-5 w-5"></x-heroicon-s-trash>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="9" class="px-4 py-8 text-center text-gray-500">
+                                            <div class="flex flex-col items-center">
+                                                <svg class="w-12 h-12 text-gray-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                                </svg>
+                                                <p class="font-medium">Belum ada data</p>
+                                                <p class="text-sm">Data akan muncul disini setelah ditambahkan</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mobile Card View (Hidden on larger screens) -->
+                    <div class="block sm:hidden space-y-4 mt-4">
+                        @forelse ($dataTki as $index => $row)
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold text-gray-900">{{ $row->name }}</h3>
+                                        <p class="text-sm text-gray-600 font-mono">{{ $row->nik }}</p>
+                                    </div>
+                                    <div class="flex gap-2 ml-4">
+                                        <button onclick="openModal('{{ route('admin.tki.show', $row->id) }}')"
+                                            class="p-2 text-blue-600 hover:bg-blue-100 rounded">
+                                            <x-heroicon-s-user-circle class="h-5 w-5" />
+                                        </button>
+                                        <button onclick="openModal('{{ route('admin.tki.edit', $row->id) }}')"
+                                            class="p-2 text-green-600 hover:bg-green-100 rounded">
+                                            <x-heroicon-s-pencil-square class="h-5 w-5" />
+                                        </button>
+                                        <form action="{{ route('admin.tki.destroy', $row->id) }}" method="POST"
+                                            onsubmit="return confirm('Apakah anda yakin untuk menghapus datanya?')"
+                                            class="inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="p-2 text-red-600 hover:bg-red-100 rounded">
+                                                <x-heroicon-s-trash class="h-5 w-5"></x-heroicon-s-trash>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3 text-sm">
+                                    <div>
+                                        <span class="font-medium text-gray-700">Gender:</span>
+                                        <span class="ml-1 px-2 py-1 rounded-full text-xs
+                                            {{ $row->gender === 'L' ? 'bg-blue-100 text-blue-800' : 'bg-pink-100 text-pink-800' }}">
+                                            {{ $row->gender }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Pendidikan:</span>
+                                        <span class="ml-1 text-gray-600">{{ $row->education }}</span>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <span class="font-medium text-gray-700">PT:</span>
+                                        <span class="ml-1 text-gray-600">{{ $row->compani?->name ?? '-' }}</span>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <span class="font-medium text-gray-700">Negara Tujuan:</span>
+                                        <span class="ml-1 text-gray-600">{{ $row->destination?->country_name ?? '-' }}</span>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <span class="font-medium text-gray-700">Terdata:</span>
+                                        <span class="ml-1 text-gray-600">{{ $row->created_at->format('d M Y') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="text-center py-8">
+                                <svg class="w-12 h-12 text-gray-300 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                <p class="font-medium text-gray-500">Belum ada data</p>
+                            </div>
+                        @endforelse
+                    </div>
                 </div>
             </div>
 
-
-            {{-- Custom pagination next/prev --}}
+            <!-- Pagination -->
             @if ($dataTki->hasPages())
-                <div class="flex justify-end mt-2 gap-2 fixed bottom-4 right-4 z-50">
-                    {{-- Previous Page Link --}}
-                    @if ($dataTki->onFirstPage())
-                        <span class="px-3 py-1 bg-gray-200 text-gray-500 rounded cursor-not-allowed">Sebelumnya</span>
-                    @else
-                        <a href="{{ $dataTki->appends(request()->except('page'))->previousPageUrl() }}"
-                            class="px-3 py-1 bg-gray-900 text-white rounded hover:bg-gray-700">
-                            <x-heroicon-s-chevron-double-up class="h-5 w-5 -rotate-90"></x-heroicon-s-chevron-double-up>
-                        </a>
-                    @endif
+                <div class="fixed right-6 bottom-6 z-40">
+                    <div class="flex items-center space-x-2 py-1 px-3 bg-slate-900 rounded-md">
+                        {{-- Previous Page Link --}}
+                        @if ($dataTki->onFirstPage())
+                            <span class="px-3 py-2 bg-gray-100 text-gray-400 rounded cursor-not-allowed flex items-center">
+                                <x-heroicon-s-chevron-left class="h-4 w-4 mr-1"></x-heroicon-s-chevron-left>
+                            </span>
+                        @else
+                            <a href="{{ $dataTki->appends(request()->except('page'))->previousPageUrl() }}"
+                                class="px-3 py-2 bg-gray-900 hover:bg-gray-800 text-white rounded transition-colors flex items-center">
+                                <x-heroicon-s-chevron-left class="h-4 w-4 mr-1"></x-heroicon-s-chevron-left>
+                            </a>
+                        @endif
 
-                    {{-- Next Page Link --}}
-                    @if ($dataTki->hasMorePages())
-                        <a href="{{ $dataTki->appends(request()->except('page'))->nextPageUrl() }}"
-                            class="px-3 py-1 bg-gray-900 text-white rounded hover:bg-gray-700">
-                            <x-heroicon-s-chevron-double-up class="h-5 w-5 rotate-90"></x-heroicon-s-chevron-double-up>
-                        </a>
-                    @else
-                        <span class="px-3 py-1 bg-gray-200 text-gray-500 rounded cursor-not-allowed">Berikutnya</span>
-                    @endif
+                        {{-- Page Numbers --}}
+                        <div class="flex items-center space-x-1">
+                            @for ($i = max(1, $dataTki->currentPage() - 2); $i <= min($dataTki->lastPage(), $dataTki->currentPage() + 2); $i++)
+                                @if ($i == $dataTki->currentPage())
+                                    <span class="px-3 py-1 bg-blue-600 text-white rounded font-medium">{{ $i }}</span>
+                                @else
+                                    <a href="{{ $dataTki->appends(request()->except('page'))->url($i) }}"
+                                        class="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors">{{ $i }}</a>
+                                @endif
+                            @endfor
+                        </div>
+
+                        {{-- Next Page Link --}}
+                        @if ($dataTki->hasMorePages())
+                            <a href="{{ $dataTki->appends(request()->except('page'))->nextPageUrl() }}"
+                                class="px-3 py-1 bg-gray-900 hover:bg-gray-800 text-white rounded transition-colors flex items-center">
+                                <x-heroicon-s-chevron-right class="h-4 w-4 ml-1"></x-heroicon-s-chevron-right>
+                            </a>
+                        @else
+                            <span class="px-3 py-1 bg-gray-100 text-gray-400 rounded cursor-not-allowed flex items-center">
+                                <x-heroicon-s-chevron-right class="h-4 w-4 ml-1"></x-heroicon-s-chevron-right>
+                            </span>
+                        @endif
+                    </div>
                 </div>
             @endif
-    </div>
-    </main>
+        </main>
     </div>
 
     <!-- Modal -->
-    <div id="modal-tki" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-lg w-[90vw] max-w-2xl p-4 relative">
-            <button onclick="closeModal()" class="absolute top-2 right-2 text-xl">&times;</button>
-            <div id="modal-content">
-                {{-- // --}}
+    <div id="modal-tki" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
+            <button onclick="closeModal()"
+                class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-2xl leading-none z-10 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm">
+                &times;
+            </button>
+            <div id="modal-content" class="p-6">
+                {{-- Modal content will be loaded here --}}
             </div>
         </div>
     </div>
+
     <script src="{{ asset('js/all-data.js') }}"></script>
 </body>
 
