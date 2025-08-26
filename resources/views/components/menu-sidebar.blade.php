@@ -26,18 +26,15 @@
             <span class="font-medium">Archive</span>
         </div>
         {{-- Company --}}
-        <div class="items-center flex hover:bg-slate-200 text-slate-700 py-1 rounded-md gap-2 my-2 px-1">
-            <x-heroicon-s-building-office class="w-5 h-5 text-slate-800" />
-            <span class="font-medium">Company</span>
-        </div>
+        <x-nav-link :active="request()->routeIs('admin.company')" href="{{ route('admin.company') }}">
+            <x-heroicon-s-table-cells class="w-5 h-5 text-slate-800" />
+            Company
+        </x-nav-link>
 
         {{-- Destination --}}
-        <div class="items-center flex hover:bg-slate-200 text-slate-700 py-1 rounded-md gap-2 my-2 px-1">
-            <x-heroicon-s-globe-asia-australia class="w-5 h-5 text-slate-800" />
-            <span class="font-medium">Destination</span>
-        </div>
-    </div>
-    <div class="items-center flex hover:bg-slate-200 text-slate-700 py-1 rounded-md gap-2 my-2 px-1">
-        //
+        <x-nav-link :active="request()->routeIs('admin.destination')" href="{{ route('admin.destination') }}">
+            <x-heroicon-s-table-cells class="w-5 h-5 text-slate-800" />
+            Destination
+        </x-nav-link>
     </div>
 </div>

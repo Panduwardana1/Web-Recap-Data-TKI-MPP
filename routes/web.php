@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\TabelDataController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\TkiImportExportController;
 
 Route::get('/', function () {
     return redirect('/sireda');
@@ -60,3 +61,6 @@ Route::middleware('isAdmin')->prefix('admin')->group(function () {
     Route::put('/destination/{destination}', [DestinationController::class, 'update'])->name('admin.destination.update');
     Route::delete('/destination/{destination}', [DestinationController::class, 'destroy'])->name('admin.destination.destroy');
 });
+
+Route::get('/tki/import', [TkiImportExportController::class, 'import'])->name('tki.import');
+Route::get('/tki/export', [TkiImportExportController::class, 'export'])->name('tki.export');

@@ -5,4 +5,4 @@
         <h1 class="font-semibold">{{ $company->address }}</h1>
         <h1 class="font-semibold">{{ $company->phone }}</h1>
     </div>
-</div>
+</div

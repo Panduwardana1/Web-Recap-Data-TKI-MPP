@@ -22,10 +22,11 @@ class TabelDataController extends Controller
             });
         }
 
-        $dataTki = $query->paginate(25)->withQueryString();
+        $dataTki = $query->paginate(100)->withQueryString();
         // dd($dataTki->pluck('name', 'nik'));
         return view('admins.all-data', compact('dataTki'));
     }
+
 
     public function createDataTki()
     {

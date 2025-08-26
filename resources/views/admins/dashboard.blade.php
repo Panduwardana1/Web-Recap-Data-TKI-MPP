@@ -1,6 +1,37 @@
 <div class="min-h-full flex flex-col gap-4 p-4 bg-white">
     <!-- Navbar -->
-    <x-navbar-dashboard-admin></x-navbar-dashboard-admin>
+    <x-navbar-dashboard-admin>
+        @if (session('success'))
+            <div class="bg-green-100 text-green-700 p-2 rounded">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="bg-red-100 text-red-700 p-2 rounded">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="bg-red-100 text-red-700 p-2 rounded">
+                <ul>
+                    @foreach ($errors->all() as $err)
+                        <li>{{ $err }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('tki.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file" required>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Import</button>
+        </form>
+
+        <a href="{{ route('tki.export') }}" class="bg-green-500 text-white px-4 py-2 rounded">Export</a>
+
+    </x-navbar-dashboard-admin>
 
     <!-- Main Dashboard Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-2">
