@@ -26,7 +26,7 @@
         <form action="{{ route('tki.import') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="file" name="file" required>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Import</button>
+            <button type="submit">Import</button>
         </form>
 
         <a href="{{ route('tki.export') }}" class="bg-green-500 text-white px-4 py-2 rounded">Export</a>

@@ -62,5 +62,5 @@ Route::middleware('isAdmin')->prefix('admin')->group(function () {
     Route::delete('/destination/{destination}', [DestinationController::class, 'destroy'])->name('admin.destination.destroy');
 });
 
-Route::get('/tki/import', [TkiImportExportController::class, 'import'])->name('tki.import');
+Route::post('/tki/import', [TkiImportExportController::class, 'import'])->name('tki.import');
 Route::get('/tki/export', [TkiImportExportController::class, 'export'])->name('tki.export');
