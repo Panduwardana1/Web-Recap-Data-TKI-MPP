@@ -1,37 +1,7 @@
 <div class="min-h-full flex flex-col gap-4 p-4 bg-white">
     <!-- Navbar -->
-    <x-navbar-dashboard-admin>
-        @if (session('success'))
-            <div class="bg-green-100 text-green-700 p-2 rounded">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="bg-red-100 text-red-700 p-2 rounded">
-                {{ session('error') }}
-            </div>
-        @endif
-
-        @if ($errors->any())
-            <div class="bg-red-100 text-red-700 p-2 rounded">
-                <ul>
-                    @foreach ($errors->all() as $err)
-                        <li>{{ $err }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form action="{{ route('tki.import') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <input type="file" name="file" required>
-            <button type="submit">Import</button>
-        </form>
-
-        <a href="{{ route('tki.export') }}" class="bg-green-500 text-white px-4 py-2 rounded">Export</a>
-
-    </x-navbar-dashboard-admin>
+    {{-- <x-navbar-dashboard-admin>
+    </x-navbar-dashboard-admin> --}}
 
     <!-- Main Dashboard Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-2">
@@ -190,27 +160,6 @@
                     <div class="w-full h-96 md:h-[400px]">
                         <canvas id="monthlyChart" class="max-w-full max-h-full"></canvas>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="lg:col-span-12">
-            <div class="bg-gradient-to-r from-emerald-500 to-lime-500 rounded-lg p-6 text-white">
-                <h3 class="text-lg font-semibold mb-2">Quick Actions</h3>
-                <p class="text-emerald-100 mb-4">Manage your TKI data efficiently</p>
-                <div class="flex flex-wrap gap-3">
-                    <button
-                        class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 text-sm font-medium hover:bg-white/30 transition-colors">
-                        Add New TKI
-                    </button>
-                    <button
-                        class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 text-sm font-medium hover:bg-white/30 transition-colors">
-                        Generate Report
-                    </button>
-                    <button
-                        class="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 text-sm font-medium hover:bg-white/30 transition-colors">
-                        Export Data
-                    </button>
                 </div>
             </div>
         </div>
