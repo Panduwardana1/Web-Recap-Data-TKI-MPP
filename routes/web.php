@@ -5,8 +5,10 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\ImportDataController;
 use App\Http\Controllers\TabelDataController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\TkiImportController;
 use App\Http\Controllers\TkiImportExportController;
 
 Route::get('/', function () {
@@ -62,5 +64,7 @@ Route::middleware('isAdmin')->prefix('admin')->group(function () {
     Route::delete('/destination/{destination}', [DestinationController::class, 'destroy'])->name('admin.destination.destroy');
 });
 
-Route::post('/tki/import', [TkiImportExportController::class, 'import'])->name('tki.import');
-Route::get('/tki/export', [TkiImportExportController::class, 'export'])->name('tki.export');
+Route::post('/tki/import', [TkiImportController::class, 'import'])->name('tki.import');
+Route::get('test', function() {
+    return view('components.test');
+})->middleware('isAdmin');
