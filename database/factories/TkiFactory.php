@@ -31,8 +31,9 @@ class TkiFactory extends Factory
             'education' => $this->faker->randomElement(['SD', 'SMP', 'SMA', 'SLTP', 'SLTA']),
             'phone' => $this->faker->phoneNumber('085'),
             'compani_id' => Compani::inRandomOrder()->value('id'),
-            'destination_id' => Destination::inRandomOrder()->value('id')
-
+            'destination_id' => Destination::inRandomOrder()->value('id'),
+            'created_at' => $this->faker->date('2025-07-11'),
+            'updated_at' => $this->faker->date('2025-07-11'),
         ];
     }
 }
