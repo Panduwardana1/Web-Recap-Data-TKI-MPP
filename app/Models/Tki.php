@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Destination;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tki extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'tkis';
+
     protected $fillable = [
         'name',
         'nik',
@@ -23,16 +21,20 @@ class Tki extends Model
         'education',
         'phone',
         'compani_id',
-        'destination_id'
-
+        'destination_id',
     ];
 
-    public function compani() : BelongsTo {
-        return $this->belongsTo(Compani::class, 'compani_id');
+    protected $casts = [
+        'date_of_birth' => 'date',
+    ];
+
+    public function compani()
+    {
+        return $this->belongsTo(Compani::class);
     }
 
-    public function destination() : BelongsTo {
-        return $this->belongsTo(Destination::class, 'destination_id');
+    public function destination()
+    {
+        return $this->belongsTo(Destination::class);
     }
-
 }
