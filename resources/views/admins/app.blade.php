@@ -24,17 +24,8 @@
         </div>
     </div>
 
-    {{-- main --}}
     <main>
-        <div class="grid grid-cols-[220px,_1fr] p-2 font-manrope">
-            <div>
-                <x-sidebar></x-sidebar>
-            </div>
-            {{-- Column --}}
-            <div class=" rounded-lg">
-                @include('admins.dashboard')
-            </div>
-        </div>
+        @include('components.test')
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
