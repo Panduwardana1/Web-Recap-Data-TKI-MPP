@@ -12,7 +12,7 @@
 <aside id="logo-sidebar"
     class="fixed top-0 left-0 z-40 w-60 h-full transition-transform -translate-x-full sm:translate-x-0"
     aria-label="Sidebar">
-    <div class="h-full px-2 py-6 overflow-y-visible border-r-2 bg-stone-50">
+    <div class="h-full px-2 py-6 overflow-y-visible border-r-2 border-stone-200 bg-white">
         <div class="flex items-center px-5 gap-2 pb-4">
             <span class="py-2 px-3.5 rounded-md bg-gray-950 text-white text-lg">ZY</span>
             <div class="grid">
@@ -85,16 +85,16 @@
 </aside>
 
 {{-- Content --}}
-<div class="sm:ml-60 bg-stone-50">
-    <div class="dark:border-stone-100 bg-stone-50 rounded-xl px-2 relative">
+<div class="sm:ml-60 bg-stone-50 scroll-smooth">
+    <div class="dark:border-stone-200 bg-white rounded-xl px-2 relative">
         {{-- Navbar fixed --}}
         <div
-            class="hidden py-3 w-[74rem] border-b-2 sm:flex fixed left-4 right-4 sm:left-60 sm:right-4 z-50 justify-center bg-white">
+            class="hidden py-3 w-[74rem] border-b-2 sm:flex fixed left-4 right-4 sm:left-60 sm:right-4 z-50 justify-center bg-white border-stone-200">
             <div class=" flex items-center justify-between w-full max-w-full text-stone-800 rounded-md px-2">
                 <span class="font-semibold text-xl">Dashboard</span>
                 <span class="flex items-center justify-center gap-2">
-                    <span class="text-md text-stone-900">01 January 2026</span>
-                    <x-heroicon-o-calendar class="h-5 w-5"></x-heroicon-o-calendar>
+                    <span class="text-md font-medium text-stone-900">{{ $time }}</span>
+                    <x-heroicon-s-calendar class="h-5 w-5"></x-heroicon-s-calendar>
                 </span>
             </div>
         </div>
@@ -174,38 +174,107 @@
         </div>
         {{-- Col 2 --}}
         <div class="grid grid-cols-2 gap-2 mb-2">
-            <div class="flex items-center h-36 rounded-md bg-white dark:bg-white border-2">
-                <div class="flex items-center justify-between border-b py-2 px-2">
-                    <div class="flex items-center gap-2">
-                        <x-heroicon-s-credit-card
-                            class="h-6 w-6 p-0.5 rounded-full border border-sky-700 text-white bg-sky-600"
-                            title="user"></x-heroicon-s-credit-card>
-                        <span class="font-semibold text-stone-600 text-sm">NIK</span>
+            <div class="block items-center h-32 rounded-md bg-white dark:bg-white border-2">
+                <div class="flex items-center py-2 px-2 justify-between border-b rounded-tr-md rounded-tl-md">
+                    <span class="text-stone-600 font-semibold">Gender</span>
+                </div>
+                <div class="grid grid-cols-2 justify-between items-center">
+                    <div class="py-2 border-l h-full">
+                        <h1 class="text-center text-3xl font-semibold selection:bg-sky-500">
+                            {{ number_format($mele, 0, ',', '.') }}</h1>
+                        <span class="flex justify-center py-2 font-medium text-xs text-stone-600">Laki-laki</span>
                     </div>
-                    <div class="bg-teal-50 rounded-md">
-                        <span class="text-md px-4 font-semibold items-center justify-center text-teal-600">+199</span>
+                    <div class="py-2 border-l h-full">
+                        <h1 class="text-center text-3xl font-semibold selection:bg-sky-500">
+                            {{ number_format($famele, 0, ',', '.') }}</h1>
+                        <span class="flex justify-center py-2 font-medium text-xs text-stone-600">Perempuan</span>
                     </div>
                 </div>
             </div>
-            <div class="flex items-center h-36 rounded-md bg-white dark:bg-white border-2">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, iusto tenetur! Dignissimos, repudiandae
-                saepe nam vel possimus quo enim neque?
+            {{-- col 2 --}}
+            <div class="block items-center h-32 rounded-md bg-white dark:bg-white border-2">
+                <div class="flex items-center py-2 px-2 justify-between border-b">
+                    <span class="text-stone-600 font-semibold">Today</span>
+                    <span class="flex items-center gap-2 font-medium text-stone-600"
+                        title="{{ $time }}">{{ $time }} <x-heroicon-s-calendar
+                            class="h-5 w-5"></x-heroicon-s-calendar></span>
+                </div>
+                <div class="grid grid-cols-3 justify-between items-center">
+                    <div class="py-2 h-full">
+                        <h1 class="text-center text-3xl font-semibold selection:bg-sky-500">
+                            {{ number_format($today, 0, ',', '.') ?? '-' }}</h1>
+                        <span class="flex justify-center py-2 font-medium text-xs text-stone-600">All</span>
+                    </div>
+                    <div class="py-2 border-l h-full">
+                        <h1 class="text-center text-3xl font-semibold selection:bg-sky-500">10</h1>
+                        <span class="flex justify-center py-2 font-medium text-xs text-stone-600">Laki-laki</span>
+                    </div>
+                    <div class="py-2 border-l h-full">
+                        <h1 class="text-center text-3xl font-semibold selection:bg-sky-500">1</h1>
+                        <span class="flex justify-center py-2 font-medium text-xs text-stone-600">Perempuan</span>
+                    </div>
+                </div>
             </div>
-            {{-- <div class="flex items-center justify-center rounded-sm bg-gray-50 h-28 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                </p>
-            </div> --}}
         </div>
-        {{-- Row 3 --}}
-        <div class="flex items-center justify-center h-48 mb-4 rounded-md bg-white dark:bg-white border-2">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam rerum a sequi ipsa illo beatae eum
-                dolorem assumenda commodi voluptatibus. Cupiditate officiis dicta minus soluta asperiores accusamus et
-                dolorem sequi.</p>
+        {{-- todo Chart --}}
+        <div class="grid items-center h-75 mb-2 rounded-lg bg-white dark:bg-white border-2">
+            <div class="flex items-center gap-1 py-2 px-2 border-b bg-stone-800 rounded-tl-md rounded-tr-md">
+                <x-heroicon-o-chart-bar class="h-5 w-5 text-stone-200"></x-heroicon-o-chart-bar>
+                <span class="font-semibold text-stone-200">Chart</span>
+            </div>
+            <div class="p-2 h-64 border bg-gray-200">
+                Content
+            </div>
+        </div>
+        {{-- todo Col 2 Data Company --}}
+        <div class="grid grid-cols-2 gap-4 mb-2">
+            <div class="block items-center h-32 rounded-md bg-white dark:bg-white border-2">
+                <div class="flex items-center py-2 px-2 justify-between border-b">
+                    <span class="text-stone-600 font-semibold">Today</span>
+                    <span class="flex items-center gap-2 font-medium text-stone-600"
+                        title="{{ $time }}">{{ $time }} <x-heroicon-s-calendar
+                            class="h-5 w-5"></x-heroicon-s-calendar></span>
+                </div>
+                <div class="grid grid-cols-3 justify-between items-center">
+                    <div class="py-2 h-full">
+                        <h1 class="text-center text-3xl font-semibold selection:bg-sky-500">
+                            {{ number_format($today, 0, ',', '.') ?? '-' }}</h1>
+                        <span class="flex justify-center py-2 font-medium text-xs text-stone-600">All</span>
+                    </div>
+                    <div class="py-2 border-l h-full">
+                        <h1 class="text-center text-3xl font-semibold selection:bg-sky-500">10</h1>
+                        <span class="flex justify-center py-2 font-medium text-xs text-stone-600">Laki-laki</span>
+                    </div>
+                    <div class="py-2 border-l h-full">
+                        <h1 class="text-center text-3xl font-semibold selection:bg-sky-500">1</h1>
+                        <span class="flex justify-center py-2 font-medium text-xs text-stone-600">Perempuan</span>
+                    </div>
+                </div>
+            </div>
+            {{-- todo data lainnya --}}
+            <div class="block items-center h-32 rounded-md bg-white dark:bg-white border-2">
+                <div class="flex items-center py-2 px-2 justify-between border-b">
+                    <span class="text-stone-600 font-semibold">Today</span>
+                    <span class="flex items-center gap-2 font-medium text-stone-600"
+                        title="{{ $time }}">{{ $time }} <x-heroicon-s-calendar
+                            class="h-5 w-5"></x-heroicon-s-calendar></span>
+                </div>
+                <div class="grid grid-cols-3 justify-between items-center">
+                    <div class="py-2 h-full">
+                        <h1 class="text-center text-3xl font-semibold selection:bg-sky-500">
+                            {{ number_format($today, 0, ',', '.') ?? '-' }}</h1>
+                        <span class="flex justify-center py-2 font-medium text-xs text-stone-600">All</span>
+                    </div>
+                    <div class="py-2 border-l h-full">
+                        <h1 class="text-center text-3xl font-semibold selection:bg-sky-500">10</h1>
+                        <span class="flex justify-center py-2 font-medium text-xs text-stone-600">Laki-laki</span>
+                    </div>
+                    <div class="py-2 border-l h-full">
+                        <h1 class="text-center text-3xl font-semibold selection:bg-sky-500">1</h1>
+                        <span class="flex justify-center py-2 font-medium text-xs text-stone-600">Perempuan</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="flex items-center justify-center h-48 mb-4 rounded-sm bg-gray-50 dark:bg-gray-800">
             <p class="text-2xl text-gray-400 dark:text-gray-500">
@@ -215,44 +284,6 @@
                         d="M9 1v16M1 9h16" />
                 </svg>
             </p>
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-            <div class="flex items-center justify-center rounded-sm bg-gray-50 h-28 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                </p>
-            </div>
-            <div class="flex items-center justify-center rounded-sm bg-gray-50 h-28 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                </p>
-            </div>
-            <div class="flex items-center justify-center rounded-sm bg-gray-50 h-28 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                </p>
-            </div>
-            <div class="flex items-center justify-center rounded-sm bg-gray-50 h-28 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                </p>
-            </div>
         </div>
     </div>
 </div>
